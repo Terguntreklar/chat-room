@@ -1,11 +1,13 @@
 import './App.css';
 
 import React from 'react'
-import SignIn from './Signing';
-import  SignOut from './Signing';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+
+
+import SignIn from './Signing';
+import  SignOut from './Signing';
 
 
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -74,4 +76,5 @@ async function sendMessageToDB(message){ //should add message to firestore
     console.log(e)
   }
 }
+
 export default App;

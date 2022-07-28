@@ -17,4 +17,4 @@ function SignOut() {
     return <button onClick={()=> auth.signOut()}>Sign out</button>
 }
 
-export default SignIn
+export default {SignIn,SignOut}
