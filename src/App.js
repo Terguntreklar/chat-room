@@ -1,10 +1,12 @@
 import './App.css';
 
 import React from 'react'
-
+import SignIn from './Signing';
+import  SignOut from './Signing';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+
 
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
@@ -30,22 +32,13 @@ function App() {
     <div className="App">
       <header className="App-header">
         <section>
-          {user?null:<SignIn/>} {/* replace null here with the hompage rfc */}
+          {user?<SignOut/>:<SignIn/>} {/* replace null here with the hompage rfc */}
         </section>
       </header>
     </div>
   )
 }
-function SignIn() {
-  const signInWithGoogle = () =>{
-    const provider = new firebase.auth.GoogleAuthProvider()
-    auth.signInWithPopup(provider)
-  }
-  return <button onClick={signInWithGoogle}>sign in with google</button>
-}
-function SignOut() {
-  return <button onClick={()=> auth.signOut()}>Sign out</button>
-}
+
 function DebugFunction() {//function for notes, to be deleted later, not a comment to provide highlighting
 
   //how to get user auth info: referenced from https://firebase.google.com/docs/auth/web/manage-users#web-version-8_1
