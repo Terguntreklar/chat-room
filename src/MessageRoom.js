@@ -1,12 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { firestore, auth, firebase } from './firebase'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { SignOut } from './SignOut'
 
 const DBmessages = firestore.collection('messages')
 const query = DBmessages.orderBy('timestamp').limit(50)
+const converter = {
+    fromFirestore(snapshot, options){
+        const data = snapshot.data(options)
+        return {
+            text: data.text,
+            displayName: data.displayName,
+            timestamp: data.timestamp,
+            uid: data.uid,
+            photoURL: data.photoURL,
+            id: snapshot.id
+        }
+    }
+}
 export default function MessageRoom() {
-    const [messages] = useCollectionData(query, {idField: 'id'})
+    
+    const [messages] = useCollectionData(query.withConverter(converter))
+    const scrolldiv = useRef()
+    const scrollToBottom = () => {
+        scrolldiv.current.scrollIntoView({ behavior: "smooth" })
+    }
+    useEffect(scrollToBottom, [messages]);
     const [formValue, setFormValue] = useState('')
     const sendMessageToDB = async(e)=>{ 
         e.preventDefault()
@@ -21,6 +40,7 @@ export default function MessageRoom() {
             photoURL: photoURL
         })
         setFormValue('')
+        scrollToBottom()
     }
     return (
         <>
@@ -31,19 +51,26 @@ export default function MessageRoom() {
                 <input value={formValue} placeholder={'enter message'} onChange={(e) => setFormValue(e.target.value)}/>
                 <button type='submit'>SEND</button>
             </form>
+          <div ref={scrolldiv}></div>
         </section>
         </>
     )
 }
 function Message(props){
     const { text,displayName, timestamp, uid, photoURL } = props.message
-    const d = timestamp.toDate()
+    let d = ''
+    if (timestamp == null) {
+        d = 'just now'
+    }
+    else{
+        d =`${timestamp.toDate().getDate()}/${timestamp.toDate().getMonth()}`
+    }
     return (
     <div className={uid===auth.currentUser.uid?'sent-message':'recieved-message'}>
         <img src={photoURL} alt=''></img>
         <p>{displayName}</p>
         <p>{text}</p>
-        <p>sent at: {d.getDate()}/{d.getMonth()}</p>
+        <p>sent at: {d}</p>
     </div>
     )
 }
