@@ -1,20 +1,17 @@
 import './App.css';
 
-import React from 'react'
-import { firebase,auth,firestore } from "./firebase";
-
+import React, { useRef } from 'react'
+import { firebase,auth } from "./firebase";
 import { SignIn } from './SignIn';
-
 import { useAuthState } from 'react-firebase-hooks/auth'
 
 
 import MessageRoom from './MessageRoom';
 
-const DBmessages = firestore.collection('messages') // refers to collection of messages in firebase, can be queried, removed from and added into
-
 // check https://www.pluralsight.com/guides/setting-up-a-react-project-from-github on how to run this and install necessary files in node_modules
 function App() {
   const [user] = useAuthState(auth)
+  
   return (
     <div className="App">
       <header className="App-header">
