@@ -1,30 +1,16 @@
 import './App.css';
 
 import React from 'react'
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import { firebase,auth,firestore } from "./firebase";
 
-
-import SignIn from './Signing';
-import  SignOut from './Signing';
-
+import { SignIn } from './SignIn';
+import { SignOut } from './SignOut';
+// import {SignIn} from './Signing';
+// import {SignOut} from './Signing'
 
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 
-firebase.initializeApp({
-  apiKey: "AIzaSyCcOH31ooiSwNY7bQUbVUdliPWm73ys_Rg",
-  authDomain: "chat-room-efca6.firebaseapp.com",
-  projectId: "chat-room-efca6",
-  storageBucket: "chat-room-efca6.appspot.com",
-  messagingSenderId: "60049412890",
-  appId: "1:60049412890:web:6ce6ed2102d9ae6e3d12a3",
-  measurementId: "G-KVYBMFHVNK"
-})
-
-const auth = firebase.auth()
-const firestore = firebase.firestore()
 const DBmessages = firestore.collection('messages') // refers to collection of messages in firebase, can be queried, removed from and added into
 
 // check https://www.pluralsight.com/guides/setting-up-a-react-project-from-github on how to run this and install necessary files in node_modules
