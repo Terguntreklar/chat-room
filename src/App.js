@@ -9,7 +9,9 @@ import { SignOut } from './SignOut';
 // import {SignOut} from './Signing'
 
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useCollectionData } from 'react-firebase-hooks/firestore'
+
+
+import MessageRoom from './MessageRoom';
 
 const DBmessages = firestore.collection('messages') // refers to collection of messages in firebase, can be queried, removed from and added into
 
@@ -20,7 +22,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <section>
-          {user?<SignOut/>:<SignIn/>} {/* replace null here with the hompage rfc */}
+          {user?<MessageRoom/>:<SignIn/>} {/* replace null here with the hompage rfc */}
         </section>
       </header>
     </div>
@@ -48,19 +50,6 @@ class message{ //class to hold information on messages, should be a prop in the 
     this.name = name
   }
 }
-async function sendMessageToDB(message){ //should add message to firestore
-  const uid = auth.currentUser().uid
-  const photoURL = auth.currentUser().photoURL
-  try {
-    await DBmessages.add({
-      text: message.content,
-      date: firebase.firestore.FieldValue.serverTimestamp(),
-      uid: uid,
-      photo: photoURL
-    })
-  } catch (e) {
-    console.log(e)
-  }
-}
+
 
 export default App;
