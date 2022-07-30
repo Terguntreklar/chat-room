@@ -4,9 +4,6 @@ import React from 'react'
 import { firebase,auth,firestore } from "./firebase";
 
 import { SignIn } from './SignIn';
-import { SignOut } from './SignOut';
-// import {SignIn} from './Signing';
-// import {SignOut} from './Signing'
 
 import { useAuthState } from 'react-firebase-hooks/auth'
 
