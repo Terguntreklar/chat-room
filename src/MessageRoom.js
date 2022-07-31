@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { firestore, auth, firebase } from './firebase'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
-import { SignOut } from './SignOut'
+import SendIcon from '@mui/icons-material/Send';
 
 const DBmessages = firestore.collection('messages')
 const query = DBmessages.orderBy('timestamp').limit(50)
@@ -18,6 +18,9 @@ const converter = {
         }
     }
 }
+
+const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 export default function MessageRoom() {
     
     const [messages] = useCollectionData(query.withConverter(converter))
@@ -27,33 +30,37 @@ export default function MessageRoom() {
     }
     useEffect(scrollToBottom, [messages]);
     const [formValue, setFormValue] = useState('')
-    const sendMessageToDB = async(e)=>{ 
+    const sendMessageToDB = async(e)=>{
         e.preventDefault()
         const uid = auth.currentUser.uid
         const photoURL = auth.currentUser.photoURL
         const displayName = auth.currentUser.displayName
+        if (formValue === '') {
+            return;
+        }
         await DBmessages.add({
             text: formValue,
             displayName: displayName,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             uid: uid,
-            photoURL: photoURL
-        })
-        setFormValue('')
-        scrollToBottom()
+            photoURL: photoURL,
+        });
+        setFormValue('');
+        scrollToBottom();
     }
     return (
-        <>
-        <header><SignOut/></header>
-        <section>
-            {messages && messages.map((message)=><Message key = {message.id} message = {message}/>)}
-            <form onSubmit={sendMessageToDB}>
-                <input value={formValue} placeholder={'enter message'} onChange={(e) => setFormValue(e.target.value)}/>
-                <button type='submit'>SEND</button>
-            </form>
+        <section className='msg-sec'>
+            <div className='msg-cont'>
+                {messages && messages.map((message)=><Message key = {message.id} message = {message}/>)}
+            </div>
+            <div className='msg-form'>
+                <form onSubmit={sendMessageToDB}>
+                    <input value={formValue} placeholder={'enter message'} onChange={(e) => setFormValue(e.target.value)}/>
+                    <button className='send-btn' type='submit'> <SendIcon /> </button>
+                </form>
+            </div>
           <div ref={scrolldiv}></div>
         </section>
-        </>
     )
 }
 function Message(props){
@@ -63,7 +70,7 @@ function Message(props){
         d = 'just now'
     }
     else{
-        d =`${timestamp.toDate().getDate()}/${timestamp.toDate().getMonth()}`
+        d =`${timestamp.toDate().getDate()}/${month[timestamp.toDate().getMonth()]}`;
     }
     return (
     <div className={uid===auth.currentUser.uid?'sent-message':'recieved-message'}>
