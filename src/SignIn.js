@@ -1,8 +1,6 @@
-import './SignIn.css';
-
 import React from 'react'
 import { useState } from 'react';
-import { firebase, auth } from './firebase';
+import { firebase,auth } from './firebase';
 
 export function SignIn() {
     const signInWithGoogle = () => {
@@ -25,11 +23,11 @@ export function SignIn() {
     }
 
     return <div className='login-cont'>
-      <form className='form'>
+      <form>
         <input onChange={usernameHandler} type="text" className='username-inpt' placeholder='Username' />
-        <input onChange={passwordHandler} type="password" className='password-inpt' placeholder='Password' />
-        <button className='submit-btn' onSubmit={submitHandler} type='submit'>Submit</button>
+        <input onChange={passwordHandler} type="password" className='username-inpt' placeholder='Password' />
+        <button onSubmit={submitHandler} type='submit'>Submit</button>
       </form>
-      <button className='singin-btn' onClick={signInWithGoogle}>sign in with google</button>
+      <button onClick={signInWithGoogle}>sign in with google</button>
     </div>;
 }
