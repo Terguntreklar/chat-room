@@ -1,7 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-
+import "firebase/compat/storage";
 firebase.initializeApp({
     apiKey: "AIzaSyCcOH31ooiSwNY7bQUbVUdliPWm73ys_Rg",
     authDomain: "chat-room-efca6.firebaseapp.com",
@@ -13,5 +13,6 @@ firebase.initializeApp({
   })
 const auth = firebase.auth()
 const firestore = firebase.firestore()
+const storage = firebase.storage()
 
-export {firebase, auth ,firestore}
+export {firebase, auth ,firestore, storage}

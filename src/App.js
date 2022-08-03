@@ -48,13 +48,5 @@ function DebugFunction() {//function for notes, to be deleted later, not a comme
   }
   console.log(firebase.database.ServerValue.TIMESTAMP) //returns current date, never use any other js time function to get time
 }
-class message{ //class to hold information on messages, should be a prop in the ' Message ' react function component
-  constructor(content, uid, name){
-    this.content = content
-    this.uid = uid
-    this.name = name
-  }
-}
-
 
 export default App;
