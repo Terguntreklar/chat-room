@@ -1,3 +1,4 @@
+import './MessageRoom.css'
 import React, { useState, useRef, useEffect } from 'react'
 import { firestore, auth, firebase,storage } from './firebase'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
@@ -19,6 +20,8 @@ const converter = {
         }
     }
 }
+const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
 const imagesRef = storage.ref()
 
 export default function MessageRoom() {
@@ -39,7 +42,7 @@ export default function MessageRoom() {
             "state_changed",
             snapshot => {},
             error => {
-                console.log(error);
+                console.log(error)
             },
             () => {
                     imagesRef
@@ -54,11 +57,14 @@ export default function MessageRoom() {
             }
         )
     }
-    const sendMessageToDB = async(e)=>{ 
+    const sendMessageToDB = async(e)=>{
         e.preventDefault()
         const uid = auth.currentUser.uid
         const photoURL = auth.currentUser.photoURL
         const displayName = auth.currentUser.displayName
+        if (formValue === '' &&  imageURL === '') {
+            return
+        }
         await DBmessages.add({
             text: formValue,
             displayName: displayName,
@@ -94,7 +100,7 @@ export default function MessageRoom() {
 }
 function Message(props){
     const { text,displayName, timestamp, uid, photoURL, downloadURL} = props.message
-    let d = timestamp==null?'just now':`${timestamp.toDate().getDate()}/${timestamp.toDate().getMonth()}`
+    let d = timestamp==null?'just now':`${timestamp.toDate().getDate()}/${month[timestamp.toDate().getMonth()]}`
     let imgDisplay = (downloadURL==="")?{display: "none"}:{"":""} //move this to some css file
     return (
         <div className={uid===auth.currentUser.uid?'sent-message':'recieved-message'}>
