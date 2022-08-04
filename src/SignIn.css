@@ -1,0 +1,39 @@
+.login-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 300px;
+    background-color: #333;
+    border-radius: 16px;
+    margin: auto;
+  }
+  .login-cont .form {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  .login-cont .form .username-inpt,
+  .login-cont .form .password-inpt {
+    border-radius: 2px;
+    outline: none;
+    margin: 1px;
+  }
+  .login-cont .form .username-inpt:focus,
+  .login-cont .form .username-inpt:focus {
+    border-color: #282c34;
+    border-width: 3px;
+  }
+  .submit-btn{
+    background-color: #E91E63;
+    outline: none;
+    border: none;
+    width: 180px;
+  }
+  .singin-btn {
+    background-color: #E91E63;
+    outline: none;
+    border: none;
+    width: 180px;
+  }
