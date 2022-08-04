@@ -1,6 +1,7 @@
+import './SignIn.css'
 import React from 'react'
-import { useState } from 'react';
-import { firebase,auth } from './firebase';
+import { useState } from 'react'
+import { firebase,auth } from './firebase'
 
 export function SignIn() {
     const signInWithGoogle = () => {
@@ -8,26 +9,26 @@ export function SignIn() {
       auth.signInWithPopup(provider)
     }
 
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState('')
 
     const usernameHandler = (e) => {
-      setUsername(e.target.value);
+      setUsername(e.target.value)
     }
 
     const passwordHandler = (e) => {
-      let password = e.target.value;
+      let password = e.target.value
     }
 
     const submitHandler = (e) => {
-      e.preventDefault();
+      e.preventDefault()
     }
 
     return <div className='login-cont'>
-      <form>
-        <input onChange={usernameHandler} type="text" className='username-inpt' placeholder='Username' />
-        <input onChange={passwordHandler} type="password" className='username-inpt' placeholder='Password' />
-        <button onSubmit={submitHandler} type='submit'>Submit</button>
-      </form>
-      <button onClick={signInWithGoogle}>sign in with google</button>
-    </div>;
+    <form className='form'>
+      <input onChange={usernameHandler} type="text" className='username-inpt' placeholder='Username' />
+      <input onChange={passwordHandler} type="password" className='password-inpt' placeholder='Password' />
+      <button className='submit-btn' onSubmit={submitHandler} type='submit'>Submit</button>
+    </form>
+    <button className='singin-btn' onClick={signInWithGoogle}>sign in with google</button>
+  </div>
 }
