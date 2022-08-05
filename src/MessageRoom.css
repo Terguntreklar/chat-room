@@ -1,3 +1,12 @@
+main{
+  /* background-image: url("./back.jpg"); */
+  /* background-repeat: no-repeat; */
+  background-image: linear-gradient(90deg, rgb(44, 42, 51), rgb(50, 5, 42));
+  padding-top: 1rem;
+  width: 80%;
+  display: flex;
+  margin: auto;
+}
 .msg-sec {
     display: flex;
     flex-direction: column;
@@ -16,3 +25,40 @@
     height: 35px;
     width: 100%;
   }
+
+.message .details .photo{
+  width: auto;
+  height: auto;
+  max-width: 170px;
+}
+.message .imge{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.message{
+  display: flex;
+  margin: 0px 1rem 3rem 1rem;
+  padding: 1rem;
+  max-width: 400px;
+
+}
+
+.recieved{
+  background-color: cornflowerblue;
+  border-radius: 20px 20px 20px 0px;
+}
+
+.sent{
+  flex-direction: row-reverse;
+  background-color: #eee;
+  border-radius: 20px 20px 0px 20px;
+}
+
+
+
+
+.sendMsg{
+  width: 100%;
+}
