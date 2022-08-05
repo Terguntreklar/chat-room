@@ -79,19 +79,19 @@ export default function MessageRoom() {
     }
     return (
         <>
-        <header><SignOut/></header>
-        <section>
+        {/* <header><SignOut/></header> */}
+            <section className='sendMsg'>
             {messages && messages.map((message)=><Message key = {message.id} message = {message}/>)}
             <form onSubmit={sendMessageToDB}>
-                <input value={formValue} placeholder={'enter message'} onChange={(e) => setFormValue(e.target.value)}/>
+                <input className='msg' value={formValue} placeholder={'enter message'} onChange={(e) => setFormValue(e.target.value)}/>
                 <input 
                     type='file' 
                     ref={imageInput} 
                     style={{display: 'none'}}
                     onChange={imageHandler}
                 />
-                <button onClick={(e)=>{e.preventDefault();imageInput.current.click()}}>ADD IMAGE</button>
-                <button type='submit'>SEND</button>
+                <button className='bton' onClick={(e)=>{e.preventDefault();imageInput.current.click()}}>ADD IMAGE</button>
+                <button className='bton' type='submit'>SEND</button>
             </form>
           <div ref={scrolldiv}></div>
         </section>
@@ -103,12 +103,15 @@ function Message(props){
     let d = timestamp==null?'just now':`${timestamp.toDate().getDate()}/${month[timestamp.toDate().getMonth()]}`
     let imgDisplay = (downloadURL==="")?{display: "none"}:{"":""} //move this to some css file
     return (
-        <div className={uid===auth.currentUser.uid?'sent-message':'recieved-message'}>
-        <img src={photoURL} alt=""></img>
-        <p>{displayName}</p>
-        <p>{text}</p>
-        <img src = {downloadURL} alt="" style={imgDisplay} ></img>
-        <p>sent at: {d}</p>
+        <div className={uid===auth.currentUser.uid?'sent message':'recieved message'}>
+            <img className='imge' src={photoURL} alt=""></img>
+            <div className='details'>
+                <p className='name'>{displayName}</p>
+                <p className='txt'>{text}</p>
+                <img className='photo' src = {downloadURL} alt="" style={imgDisplay} ></img>
+                <p className='date'>sent at: {d}</p>
+            </div>
+        
     </div>
     )
 }
