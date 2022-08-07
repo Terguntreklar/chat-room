@@ -25,6 +25,7 @@
 main {
   width: 100%;
   height: calc(100vh - 80px);
+  background-image: url("pexels-adrien-olichon-2387793.jpg");
 }
 .signin-cont {
   padding-top: calc(100vh/4);
