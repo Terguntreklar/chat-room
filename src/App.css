@@ -3,13 +3,16 @@
   margin: 0;
   padding: 0;
 }
+
 ::selection {
   background-color: #000;
   color: #E91E63;
 }
+
 .App {
   text-align: center;
 }
+
 .App-header {
   background-color: #282c34;
   padding: 0 160px;
@@ -26,6 +29,18 @@ main {
   width: 100%;
   height: calc(100vh - 80px);
 }
+
 .signin-cont {
   padding-top: calc(100vh/4);
+}
+
+@media (max-width: 800px) {
+  * {
+    font-size: 95%;
+  }
+
+  .App-header {
+    padding: 0 10px;
+    height: 50px;
+  }
 }

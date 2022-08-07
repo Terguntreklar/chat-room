@@ -29,6 +29,6 @@ export function SignIn() {
         <input onChange={passwordHandler} type="password" className='username-inpt' placeholder='Password' />
         <button className='submit-btn' onSubmit={submitHandler} type='submit'>Submit</button>
       </form>
-      <button className='signin-btn' onClick={signInWithGoogle}>sign in with google</button>
+      <button className='signin-btn' onClick={signInWithGoogle}>Sign In With Google</button>
     </div>;
 }

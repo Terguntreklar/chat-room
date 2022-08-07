@@ -62,7 +62,7 @@ export default function MessageRoom() {
         const uid = auth.currentUser.uid
         const photoURL = auth.currentUser.photoURL
         const displayName = auth.currentUser.displayName
-        if (formValue === '' &&  imageURL === '') {
+        if (formValue === ' ' &&  imageURL === '') {
             return
         }
         await DBmessages.add({
@@ -80,18 +80,18 @@ export default function MessageRoom() {
     return (
         <>
         {/* <header><SignOut/></header> */}
-            <section className='sendMsg'>
+            <section className='msg-sec'>
             {messages && messages.map((message)=><Message key = {message.id} message = {message}/>)}
-            <form onSubmit={sendMessageToDB}>
-                <input className='msg' value={formValue} placeholder={'enter message'} onChange={(e) => setFormValue(e.target.value)}/>
+            <form className='msg-form' onSubmit={sendMessageToDB}>
+                <input className='msg' value={formValue} placeholder={'Enter Message'} onChange={(e) => setFormValue(e.target.value)}/>
                 <input 
                     type='file' 
                     ref={imageInput} 
                     style={{display: 'none'}}
                     onChange={imageHandler}
                 />
-                <button className='bton' onClick={(e)=>{e.preventDefault();imageInput.current.click()}}>ADD IMAGE</button>
-                <button className='bton' type='submit'>SEND</button>
+                <button className='bton' type='submit'><img src='https://img.icons8.com/dusk/344/sent.png'></img></button>
+                <button className='bton' onClick={(e)=>{e.preventDefault();imageInput.current.click()}}><img src='https://img.icons8.com/external-obvious-flat-kerismaker/344/external-attachment-office-stationery-flat-obvious-flat-kerismaker.png'></img></button>
             </form>
           <div ref={scrolldiv}></div>
         </section>
@@ -103,13 +103,15 @@ function Message(props){
     let d = timestamp==null?'just now':`${timestamp.toDate().getDate()}/${month[timestamp.toDate().getMonth()]}`
     let imgDisplay = (downloadURL==="")?{display: "none"}:{"":""} //move this to some css file
     return (
-        <div className={uid===auth.currentUser.uid?'sent message':'recieved message'}>
-            <img className='imge' src={photoURL} alt=""></img>
-            <div className='details'>
+        <div className={uid === auth.currentUser.uid ? 'sent message' : 'recieved message'}>
+            <div className='user-info'>
+                <img className='imge' src={photoURL} alt=""></img>
                 <p className='name'>{displayName}</p>
+            </div>
+            <div className='details'>
                 <p className='txt'>{text}</p>
                 <img className='photo' src = {downloadURL} alt="" style={imgDisplay} ></img>
-                <p className='date'>sent at: {d}</p>
+                <p className='date'>Sent At: {d}</p>
             </div>
         
     </div>
