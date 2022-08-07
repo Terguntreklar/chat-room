@@ -2,7 +2,6 @@ import './MessageRoom.css'
 import React, { useState, useRef, useEffect } from 'react'
 import { firestore, auth, firebase,storage } from './firebase'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
-import { SignOut } from './SignOut'
 
 const DBmessages = firestore.collection('messages')
 const query = DBmessages.orderBy('timestamp').limit(50)
@@ -36,7 +35,6 @@ export default function MessageRoom() {
     }
     useEffect(scrollToBottom, [messages])
     const imageHandler = async(e) =>{
-        window.alert("image uploading, please wait for confirmation, I don't know how to make a progressbar 😒")
         const uploadTask = imagesRef.child('images/'+ e.target.files[0].name).put(e.target.files[0])
         uploadTask.on(
             "state_changed",
@@ -50,9 +48,18 @@ export default function MessageRoom() {
                     .getDownloadURL()
                     .then(URL => {
                         setImageURL(URL)
-                        console.log("this works")
-                        window.alert("image uploaded, you may send your image!😏 ")
-
+                        console.log('URL created')
+                        const uid = auth.currentUser.uid
+                        const photoURL = auth.currentUser.photoURL || `https://avatars.dicebear.com/api/human/${uid}.svg`
+                        const displayName = auth.currentUser.displayName || 'Anonymous user'
+                        DBmessages.add({
+                            displayName: displayName,
+                            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                            uid: uid,
+                            photoURL: photoURL,
+                            downloadURL: imageURL
+                        })
+                        console.log('message sent')
                     })
             }
         )
@@ -60,9 +67,9 @@ export default function MessageRoom() {
     const sendMessageToDB = async(e)=>{
         e.preventDefault()
         const uid = auth.currentUser.uid
-        const photoURL = auth.currentUser.photoURL
-        const displayName = auth.currentUser.displayName
-        if (formValue === '' &&  imageURL === '') {
+        const photoURL = auth.currentUser.photoURL || `https://avatars.dicebear.com/api/human/${uid}.svg`
+        const displayName = auth.currentUser.displayName || 'Anonymous user'
+        if (formValue === '') {
             return
         }
         await DBmessages.add({

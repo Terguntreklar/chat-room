@@ -8,7 +8,9 @@ export function SignIn() {
       const provider = new firebase.auth.GoogleAuthProvider()
       auth.signInWithPopup(provider)
     }
-
+    const signInAnonymously = () =>{
+      auth.signInAnonymously()
+    }
     const [username, setUsername] = useState('');
 
     const usernameHandler = (e) => {
@@ -30,5 +32,6 @@ export function SignIn() {
         <button className='submit-btn' onSubmit={submitHandler} type='submit'>Submit</button>
       </form>
       <button className='signin-btn' onClick={signInWithGoogle}>sign in with google</button>
+      <button className='signin-btn' onClick={signInAnonymously}>Join Anonymously</button>
     </div>;
 }
