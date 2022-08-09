@@ -35,7 +35,7 @@ export default function MessageRoom() {
     const scrollToBottom = () => {
         scrolldiv.current.scrollIntoView({ behavior: "smooth" })
     }
-    useEffect(scrollToBottom, [messages]) //auto-scroll
+    useEffect(scrollToBottom, [messages])
     const imageHandler = async(e) =>{ //uploads image to Storage and creates message
         const uploadTask = imagesRef.child('images/'+ e.target.files[0].name).put(e.target.files[0])
         uploadTask.on(
@@ -78,29 +78,30 @@ export default function MessageRoom() {
     }
     return (
         <>
+        {/* <header><SignOut/></header> */}
             <section className='msg-sec'>
-                {messages && messages.map((message)=><Message key = {message.id} message = {message}/>)}
-                <form onSubmit={sendMessageToDB}>
-                    <input className='msg' value={formValue} placeholder={'Enter message'} onChange={(e) => setFormValue(e.target.value)}/>
-                    <input 
-                        type='file' 
-                        ref={imageInput} 
-                        style={{display: 'none'}}
-                        onChange={imageHandler}
-                    />
-                    <button className='bton' type='submit'><img src='https://img.icons8.com/dusk/344/sent.png'></img></button>
-                    <button className='bton' onClick={(e)=>{e.preventDefault();imageInput.current.click()}}><img src='https://img.icons8.com/external-obvious-flat-kerismaker/344/external-attachment-office-stationery-flat-obvious-flat-kerismaker.png'></img></button>
-                </form>
-            </section>
-            <div ref={scrolldiv}></div>
+            {messages && messages.map((message)=><Message key = {message.id} message = {message}/>)}
+            <form className='msg-form' onSubmit={sendMessageToDB}>
+                <input className='msg' value={formValue} placeholder={'Enter Message'} onChange={(e) => setFormValue(e.target.value)}/>
+                <input 
+                    type='file' 
+                    ref={imageInput} 
+                    style={{display: 'none'}}
+                    onChange={imageHandler}
+                />
+                <button className='bton' type='submit'><img src='https://img.icons8.com/dusk/344/sent.png'></img></button>
+                <button className='bton' onClick={(e)=>{e.preventDefault();imageInput.current.click()}}><img src='https://img.icons8.com/external-obvious-flat-kerismaker/344/external-attachment-office-stationery-flat-obvious-flat-kerismaker.png'></img></button>
+            </form>
+            <div className='modal'></div>
+          <div ref={scrolldiv}></div>
+        </section>
         </>
     )
 }
-function Message(props){ //Message rfc
+function Message(props){
     const { text,displayName, timestamp, uid, photoURL, downloadURL} = props.message
     let d = timestamp==null?'just now':`${timestamp.toDate().getDate()}/${month[timestamp.toDate().getMonth()]}`
-    // requesting timestamp from firebase sometimes returns null for a very small window of time  
-    let imgDisplay = (downloadURL==="")?{display: "none"}:{"":""}
+    let imgDisplay = (downloadURL==="")?{display: "none"}:{"":""} //move this to some css file
     return (
         <div className={uid === auth.currentUser.uid ? 'sent message' : 'recieved message'}>
             <div className='user-info'>
@@ -112,7 +113,7 @@ function Message(props){ //Message rfc
                 <img className='photo' src = {downloadURL} alt="" style={imgDisplay} ></img>
                 <p className='date'>Sent At: {d}</p>
             </div>
-
+        
     </div>
     )
 }
