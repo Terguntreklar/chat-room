@@ -59,12 +59,11 @@
     margin-bottom: 2rem;
 }
 
-/* @media (max-width: 410px) {
-    .signin-cont {
+@media (max-width: 410px){
+    .signin-cont{
         padding-top: calc(80vh/4);
     }
-
-    .login-cont {
+    .login-cont{
         width: 90%;
     }
-} */
+}

@@ -10,9 +10,9 @@ export function SignIn() {
     const signInAnonymously = () =>{
       auth.signInAnonymously()
     }
-
     return <div className='login-cont'>
       <button className='signin-btn' onClick={signInWithGoogle}>Sign In With Google</button>
       <button className='signin-btn' onClick={signInAnonymously}>Join Anonymously</button>
     </div>;
+    
 }
