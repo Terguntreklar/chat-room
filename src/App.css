@@ -5,7 +5,7 @@
 }
 ::selection {
   background-color: #000;
-  color: #E91E63;
+  color: #e91e63;
 }
 .App {
   text-align: center;
@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: space-between;
   font-size: calc(10px + 2vmin);
-  color: #E91E63;
+  color: #e91e63;
 }
 
 main {
@@ -28,16 +28,13 @@ main {
   background-color: rgb(21, 19, 19);
 }
 .signin-cont {
-  padding-top: calc(100vh/4);
+  padding-top: calc(100vh / 4);
 }
 
 @media (max-width: 800px) {
-  * {
-    font-size: 95%;
-  }
-
-  .App-header{
+  .App-header {
     padding: 0 10px;
     height: 50px;
   }
 }
+
