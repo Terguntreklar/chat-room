@@ -1,15 +1,15 @@
 .signout-btn {
-    background-color: #E91E63;
-    color: #eee;
-    font-weight: 500;
-    outline: none;
-    border: none;
-    height: 2rem;
-    width: 150px;
-    border-radius: 20px;
-    cursor: pointer;
+  background-color: #e91e63;
+  color: #eee;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  height: 2rem;
+  width: 150px;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 .signout-btn:hover {
-    background-color: #ae1448;
+  background-color: #ae1448;
 }

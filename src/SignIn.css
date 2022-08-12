@@ -1,69 +1,69 @@
 .login-cont {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 400px;
-    width: 400px;
-    background-color: #282c34;
-    border-radius: 16px;
-    margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 400px;
+  background-color: #282c34;
+  border-radius: 16px;
+  margin: auto;
 }
 
 .login-cont .form {
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-cont .form .username-inpt,
 .login-cont .form .password-inpt {
-    outline: none;
-    margin: 1rem;
-    width: 250px;
-    color: #E91E63;
-    height: 2rem;
-    background-color: #282c34;
-    border: 0;
-    border-bottom: 3px solid #eee;
-    font-weight: 600;
+  outline: none;
+  margin: 1rem;
+  width: 250px;
+  color: #e91e63;
+  height: 2rem;
+  background-color: #282c34;
+  border: 0;
+  border-bottom: 3px solid #eee;
+  font-weight: 600;
 }
 
 .login-cont .form .username-inpt:focus,
 .login-cont .form .password-inpt:focus {
-    border-bottom: 3px solid #E91E63;
+  border-bottom: 3px solid #e91e63;
 }
 
 .submit-btn,
 .signin-btn {
-    background-color: #E91E63;
-    color: #eee;
-    font-weight: 500;
-    margin-top: 2rem;
-    outline: none;
-    border: none;
-    width: 250px;
-    height: 2rem;
-    border-radius: 20px;
-    cursor: pointer;
+  background-color: #e91e63;
+  color: #eee;
+  font-weight: 500;
+  margin-top: 2rem;
+  outline: none;
+  border: none;
+  width: 250px;
+  height: 2rem;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 .submit-btn:hover,
 .signin-btn:hover {
-    background-color: #ae1448;
+  background-color: #ae1448;
 }
 
 .username-inpt {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
-@media (max-width: 410px){
-    .signin-cont{
-        padding-top: calc(80vh/4);
-    }
-    .login-cont{
-        width: 90%;
-    }
+@media (max-width: 410px) {
+  .signin-cont {
+    padding-top: calc(80vh / 4);
+  }
+  .login-cont {
+    width: 90%;
+  }
 }
