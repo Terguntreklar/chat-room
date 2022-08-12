@@ -36,5 +36,8 @@ main {
     padding: 0 10px;
     height: 50px;
   }
+  main {
+  height: calc(100vh - 50px);
+  }
 }
 

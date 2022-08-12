@@ -100,6 +100,9 @@ export default function MessageRoom() {
           messages.map((message) => (
             <Message key={message.id} message={message} />
           ))}
+          <div ref={scrolldiv}></div>
+      </section>
+      <div>
         <form className="msg-form" onSubmit={sendMessageToDB}>
           <input
             className="msg"
@@ -129,9 +132,7 @@ export default function MessageRoom() {
             ></img>
           </button>
         </form>
-        <div className="modal"></div>
-        <div ref={scrolldiv}></div>
-      </section>
+      </div>
     </>
   );
 }
