@@ -95,7 +95,7 @@ export default function MessageRoom() {
   };
   return (
     <>
-      <section className="msg-sec">
+      <section className="message-container">
         {messages &&
           messages.map((message) => (
             <Message key={message.id} message={message} />
@@ -103,9 +103,9 @@ export default function MessageRoom() {
           <div ref={scrolldiv}></div>
       </section>
       <div>
-        <form className="msg-form" onSubmit={sendMessageToDB}>
+        <form className="message-form" onSubmit={sendMessageToDB}>
           <input
-            className="msg"
+            className="text-input"
             value={formValue}
             placeholder={"Enter Message"}
             onChange={(e) => setFormValue(e.target.value)}
@@ -116,11 +116,11 @@ export default function MessageRoom() {
             style={{ display: "none" }}
             onChange={imageHandler}
           />
-          <button className="bton" type="submit">
+          <button className="send-button" type="submit">
             <img src="https://img.icons8.com/dusk/344/sent.png" alt=""></img>
           </button>
           <button
-            className="bton"
+            className="send-button"
             onClick={(e) => {
               e.preventDefault();
               imageInput.current.click();
@@ -152,11 +152,9 @@ function Message(props) {
         uid === auth.currentUser.uid ? "sent message" : "recieved message"
       }
     >
-      <div className="user-info">
-        <img className="imge" src={photoURL} alt=""></img>
-        <p className="name">{displayName}</p>
-      </div>
+      <img className="image" src={photoURL} alt=""></img>
       <div className="details">
+        <p className="name">{displayName}</p>
         <p className="txt">{text}</p>
         <img
           className="photo"

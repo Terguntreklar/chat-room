@@ -20,7 +20,7 @@ function App() {
         {user ? (
           <SignOut />
         ) : (
-          <MessageIcon sx={{ color: pink[500], fontSize: 40 }} />
+          <MessageIcon sx={{ color: "skyblue"[300], fontSize: 40 }} />
         )}
       </header>
       <main>
