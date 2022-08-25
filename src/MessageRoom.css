@@ -60,6 +60,7 @@ main {
     "Image details"; 
   width: auto;
   height: auto;
+  max-width: 70vw;
   margin: 5px;
 }
 .image { 
@@ -72,11 +73,10 @@ main {
 .details { 
   padding: 7.5px 7.5px;
   grid-area: details; 
-  background-color:rgba(255, 255, 255, 0.08);
+  background-color:rgba(246, 246, 246, 0.081);
   border-radius: 13px;
-  width: max-content;
   margin: 4px 0;
-  min-width: 15vw;
+  width: max-content;
   max-width: 60vw;
   text-align: start;
   unicode-bidi: plaintext;
@@ -87,11 +87,14 @@ main {
   font-size: 16px;
   margin: 3px 0 7px;
   font-weight: 600;
+  width: max-content;
+  min-width: 100%;
 }
 .txt{
   margin: 4px 0;
   color: white;
   overflow-wrap: break-word;
+  unicode-bidi: plaintext;
 }
 .date{
   color: rgba(255, 255, 255, 0.65);
@@ -103,8 +106,8 @@ main {
 .sent.message{
 justify-content: end;  
 grid-template-columns: auto;
-  grid-template-areas: 
-    "details"; 
+grid-template-areas: "details"; 
+align-self: end;
 }
 .sent .details{
   background-color: #70DEE526;
@@ -121,16 +124,14 @@ grid-template-columns: auto;
 }
 
 @media (max-width: 800px) {
-  .message-form .text-input {
-    font-size: 1rem;
-  }
-  .message-form {
-    width: 100%;
-  }
-  .message {
-    /* margin: 16px 10px 16px 10px; */
-  }
   .message-form .send-button {
     margin: 1px;
+  }
+  .message {
+  display: grid; 
+  grid-template-columns: 40px auto; 
+}
+  .image { 
+    width: 40px;
   }
 }
