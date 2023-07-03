@@ -4,7 +4,8 @@ import { firestore, auth, firebase, storage } from "./firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const DBmessages = firestore.collection("messages");
-const query = DBmessages.orderBy("timestamp").limit(50);
+const query = DBmessages.orderBy("timestamp", "desc").limit(50);
+console.log(query);
 const converter = {
   fromFirestore(snapshot, options) {
     const data = snapshot.data(options);
@@ -97,10 +98,14 @@ export default function MessageRoom() {
     <>
       <section className="message-container">
         {messages &&
-          messages.map((message) => (
-            <Message key={message.id} message={message} />
+          messages.map((message, index, messages) => (
+            <Message
+              key={messages[messages.length - 1 - index].id}
+              message={messages[messages.length - 1 - index]}
+              scroll={() => scrollToBottom()}
+            />
           ))}
-          <div ref={scrolldiv}></div>
+        <div ref={scrolldiv}></div>
       </section>
       <div>
         <form className="message-form" onSubmit={sendMessageToDB}>
@@ -139,6 +144,7 @@ export default function MessageRoom() {
 function Message(props) {
   const { text, displayName, timestamp, uid, photoURL, downloadURL } =
     props.message;
+  const scroll = props.scroll;
   let d =
     timestamp == null
       ? "just now"
@@ -161,6 +167,7 @@ function Message(props) {
           src={downloadURL}
           alt=""
           style={imgDisplay}
+          onLoad={scroll}
         ></img>
         <p className="date">{d}</p>
       </div>
