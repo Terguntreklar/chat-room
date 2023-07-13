@@ -11,6 +11,7 @@ main {
   background-color: rgb(18, 18, 18);
   overflow-y: scroll;
   justify-content: space-between;
+  
 }
 .message-form {
   display: flex;
@@ -55,13 +56,12 @@ main {
   display: grid; 
   grid-template-columns: 60px auto; 
   grid-template-rows: 1fr; 
-  gap: 0px 12px; 
+  gap: 0px 6px; 
   grid-template-areas: 
     "Image details"; 
   width: auto;
   height: auto;
   max-width: 70vw;
-  margin: 5px;
 }
 .image { 
   padding: 5px 0;
@@ -87,7 +87,6 @@ main {
   font-size: 16px;
   margin: 3px 0 7px;
   font-weight: 600;
-  width: max-content;
   min-width: 100%;
 }
 .txt{
@@ -97,10 +96,12 @@ main {
   unicode-bidi: plaintext;
 }
 .date{
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.519);
+  font-size: small;
   text-align: right;
 }
 .photo{
+  max-height: 70vh;
   max-width: 100%;
 }
 .sent.message{
