@@ -5,7 +5,6 @@ import { auth } from "./firebase";
 import { SignIn } from "./SignIn";
 import { useAuthState } from "react-firebase-hooks/auth";
 import MessageIcon from "@mui/icons-material/Message";
-import { pink } from "@mui/material/colors";
 
 import MessageRoom from "./MessageRoom";
 import { SignOut } from "./SignOut";
