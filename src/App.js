@@ -1,5 +1,4 @@
 import "./App.css";
-import 'dotenv/config'
 import React from "react";
 import { auth } from "./firebase";
 import { SignIn } from "./SignIn";

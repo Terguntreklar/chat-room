@@ -45,7 +45,7 @@ export default function MessageRoom() {
   const uid = auth.currentUser.uid;
   const photoURL =
     auth.currentUser.photoURL ||
-    `https://avatars.dicebear.com/api/human/${uid}.svg`; //HTTP-API, creates unique avatar
+    `https://api.dicebear.com/7.x/thumbs/svg?seed=${uid}`; //HTTP-API, creates unique avatar
   const displayName = auth.currentUser.displayName || "Anonymous user";
   const scrollToBottom = () => {
     scrolldiv.current.scrollIntoView({ behavior: "smooth" });
